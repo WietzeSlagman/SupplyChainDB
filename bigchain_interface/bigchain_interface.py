@@ -1,6 +1,6 @@
 from bigchaindb_driver import BigchainDB
 
-class BigchainInterface:
+class Bigchain_interface:
     def __init__(self, url, port):
         self.bdb = BigchainDB(url + ":" + port)
 

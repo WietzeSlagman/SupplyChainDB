@@ -1,10 +1,14 @@
 from bigchaindb_driver import BigchainDB
-
-bdb_root_url = 'http://127.0.0.1:9984/'
-
-bdb = BigchainDB(bdb_root_url)
+from bigchain_interface import bigchain_interface as b_i
+import objects
 
 
+bdb_root_url = 'http://127.0.0.1'
+bdb_port = '9984'
+
+bdi = b_i.Bigchain_interface(bdb_root_url, bdb_port)
+
+'''
 bicycle = {
     'data': {
         'bicycle': {
@@ -35,3 +39,4 @@ print(fulfilled_creation_tx)
 sent_creation_tx = bdb.transactions.send(fulfilled_creation_tx)
 
 sent_creation_tx == fulfilled_creation_tx
+'''
