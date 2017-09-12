@@ -1,9 +1,9 @@
 from bigchaindb_driver import BigchainDB
 
-class Bigchain_interface:
+
+class BigchainInterface:
     def __init__(self, url, port):
         self.bdb = BigchainDB(url + ":" + port)
-
 
     def prepare_asset(self, operation, signer, asset):
         # Prepare asset data
@@ -11,7 +11,6 @@ class Bigchain_interface:
             operation=operation,
             signer=signer,
             asset=asset)
-
 
     def create_asset(self, prepared_data):
         # Sign transactions
@@ -27,14 +26,12 @@ class Bigchain_interface:
         else:
             return False
 
-
     def check_transaction(self, txid):
         try:
             status = self.bdb.transactions.status(txid)
             return status
         except:
             return None
-
 
     def get_transaction(self, txid):
         return self.bdb.transactions.retrieve(txid)
