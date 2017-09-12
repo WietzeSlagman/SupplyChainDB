@@ -34,4 +34,6 @@ print(fulfilled_creation_tx)
 
 sent_creation_tx = bdb.transactions.send(fulfilled_creation_tx)
 
-sent_creation_tx == fulfilled_creation_tx
+
+if sent_creation_tx == fulfilled_creation_tx:
+    print("\n\nShit works, bro")
