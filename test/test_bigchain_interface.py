@@ -8,11 +8,10 @@ db_interface = BigchainInterface(bdb_root_url, bdb_root_port)
 
 bicycle_attrs = {
     'data': {
-        'bicycle': {
-            'serial_number': 'abcd1234',
-            'manufacturer': 'bkfab',
-        },
-    },
+        'type': 'bicycle',
+        'serial_number': 'abcd1234',
+        'manufacturer': 'bkfab',
+    }
 }
 
 bicycle = DatabaseObject(bicycle_attrs, db_interface)

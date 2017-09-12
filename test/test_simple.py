@@ -7,11 +7,10 @@ bdb = BigchainDB(bdb_root_url + ":" + bdb_root_port)
 
 bicycle = {
     'data': {
-        'bicycle': {
-            'serial_number': 'abcd1234',
-            'manufacturer': 'bkfab',
-        },
-    },
+        'type': 'bicycle',
+        'serial_number': 'abcd1234',
+        'manufacturer': 'bkfab',
+    }
 }
 
 alice, bob = generate_keypair(), generate_keypair()
