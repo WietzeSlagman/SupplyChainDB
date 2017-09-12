@@ -1,8 +1,7 @@
 from bigchaindb_driver import BigchainDB
+from constants.constants import *
 
-bdb_root_url = 'http://127.0.0.1:9984/'
-
-bdb = BigchainDB(bdb_root_url)
+bdb = BigchainDB(bdb_root_url + ":" + port)
 
 
 bicycle = {
