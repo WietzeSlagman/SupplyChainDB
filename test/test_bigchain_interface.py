@@ -20,9 +20,10 @@ bicycle = DatabaseObject(bicycle_attrs, db_interface)
 print("Id: %s" % bicycle.add_object(generate_keypair()))
 
 
-print("First check transaction: %s" % db_interface.check_transaction(bicycle.txid))
+print("First check transaction: \t%s" % db_interface.check_transaction(bicycle.txid))
 
 sleep(2)
 
-print("Second check transaction: %s" % db_interface.check_transaction(bicycle.txid))
-print("Get transaction return: %s" % db_interface.get_transaction(bicycle.txid))
+print("Second check transaction: \t%s" % db_interface.check_transaction(bicycle.txid))
+print("Get transaction return: \t%s" % db_interface.get_transaction(bicycle.txid))
+print("Query result: \t\t\t\t%s" % db_interface.query(bicycle.txid))
