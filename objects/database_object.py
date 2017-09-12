@@ -1,14 +1,17 @@
 class DatabaseObject(object):
-    def __init__(self, attrs, signer, database_interface, on_chain=True):
+    def __init__(self, attrs, database_interface, on_chain=True):
         self.on_chain = on_chain
         self.attrs = attrs
 
         self.dbi = database_interface
-        self.signer = signer
 
-    def add_object(self):
-        pa = self.dbi.prepare_asset("CREATE", self.signer, self.attrs)
+    def add_object(self, keypair):
+        pa = self.dbi.prepare_asset("CREATE", keypair.public_key, self.attrs)
 
-        if not self.dbi.create_asset(pa):
-            print("Object creation unsuccesful")
+        asset = self.dbi.create_asset(pa, keypair.private_key)
+
+        if not asset:
+            print("Object creation unsuccessful")
             raise(Exception)
+
+        return asset

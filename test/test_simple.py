@@ -1,8 +1,9 @@
 from bigchaindb_driver import BigchainDB
 from constants.constants import *
+from bigchaindb_driver.crypto import generate_keypair
 
-bdb = BigchainDB(bdb_root_url + ":" + port)
 
+bdb = BigchainDB(bdb_root_url + ":" + bdb_root_port)
 
 bicycle = {
     'data': {
@@ -13,9 +14,7 @@ bicycle = {
     },
 }
 
-from bigchaindb_driver.crypto import generate_keypair
 alice, bob = generate_keypair(), generate_keypair()
-
 
 prepared_creation_tx = bdb.transactions.prepare(
    operation='CREATE',
