@@ -15,7 +15,7 @@ def main():
 
     return render_template("index.html")
 
-@app.route("/get")
+@app.route("/get", methods=["GET"])
 def get():
     app.logger.debug("You have arrived at " + url_for("get"))
     _id = request.args.get("id", None)
@@ -28,7 +28,7 @@ def get():
         return jsonify({'result': 'Error'})
 
 
-@app.route("/query")
+@app.route("/query", methods=["GET"])
 def query():
     app.logger.debug("You have arrived at " + url_for("query"))
     query = request.args.get("q", None)
