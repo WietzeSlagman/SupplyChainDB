@@ -1,7 +1,7 @@
 from flask import *
+from flask_table import *
 from bigchain_interface.bigchain_interface import BigchainInterface
 from constants.constants import *
-import json
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -41,6 +41,28 @@ def query():
         return jsonify({'result': 'Error'})
 
 
+@app.route("/db_debug", methods=["GET"])
+def db_debug():
+    app.logger.debug("You have arrived at " + url_for("db_debug"))
+    query = request.args.get("q", None)
+
+    _object = db_interface.query(query)
+
+    for x in _object:
+        x["data"]["id"] = x["id"]
+
+    data = [x["data"] for x in _object]
+
+    columns = set(sum([list(x.keys()) for x in data], []))
+
+    Table = create_table("table")
+
+    for c in columns:
+        Table = Table.add_column(c, Col(c))
+
+    table = Table(data)
+
+    return render_template("db_debug.html", table=table)
 
 
 if __name__ == "__main__":
