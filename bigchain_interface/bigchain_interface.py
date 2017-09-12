@@ -13,9 +13,6 @@ class BigchainInterface:
             asset=asset)
 
     def create_asset(self, prepared_data, private_key):
-
-        print(prepared_data)
-
         # Sign transactions
         signed_tx = self.bdb.transactions.fulfill(prepared_data, private_key)
 
@@ -30,10 +27,12 @@ class BigchainInterface:
 
     def check_transaction(self, txid):
         try:
-            status = self.bdb.transactions.status(txid)
-            return status
+            return self.bdb.transactions.status(txid)
         except:
             return None
 
     def get_transaction(self, txid):
         return self.bdb.transactions.retrieve(txid)
+
+    def query(self, search, limit=None):
+        return self.bdb.assets.get(search=search, limit=limit)

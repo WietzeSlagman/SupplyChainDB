@@ -5,13 +5,15 @@ class DatabaseObject(object):
 
         self.dbi = database_interface
 
+        self.txid = None
+
     def add_object(self, keypair):
         pa = self.dbi.prepare_asset("CREATE", keypair.public_key, self.attrs)
 
-        asset = self.dbi.create_asset(pa, keypair.private_key)
+        self.txid = self.dbi.create_asset(pa, keypair.private_key)
 
-        if not asset:
+        if not self.txid:
             print("Object creation unsuccessful")
             raise(Exception)
 
-        return asset
+        return self.txid
