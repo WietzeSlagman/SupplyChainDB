@@ -7,7 +7,7 @@ class Database_object(object):
         self.signer = signer
 
     def add_object(self):
-        pa = self.dbi.prepared_asset("CREATE", self.signer, self.attrs)
+        pa = self.dbi.prepare_asset("CREATE", self.signer, self.attrs)
 
         if not create_asset(pa):
             print("Object creation unsuccesful")
