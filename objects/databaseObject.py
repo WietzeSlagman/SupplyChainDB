@@ -1,6 +1,6 @@
-class DatabaseObject(object):
-    def __init__(self, attrs, signer, database_interface, onChain=True):
-        self.onChain = onChain
+class Database_object(object):
+    def __init__(self, attrs, signer, database_interface, on_chain=True):
+        self.on_chain = on_chain
         self.attrs = attrs
 
         self.dbi = database_interface
