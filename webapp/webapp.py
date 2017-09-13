@@ -15,6 +15,7 @@ def main():
 
     return render_template("index.html")
 
+
 @app.route("/get", methods=["GET"])
 def get():
     app.logger.debug("You have arrived at " + url_for("get"))
@@ -55,14 +56,14 @@ def db_debug():
 
     columns = set(sum([list(x.keys()) for x in data], []))
 
-    Table = create_table("table")
+    m_table = create_table("table")
 
     for c in columns:
-        Table = Table.add_column(c, Col(c))
+        m_table = m_table.add_column(c, Col(c))
 
-    table = Table(data)
+    return render_template("db_debug.html", table=m_table(data))
 
-    return render_template("db_debug.html", table=table)
+
 
 
 if __name__ == "__main__":
