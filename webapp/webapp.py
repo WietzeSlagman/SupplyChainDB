@@ -16,6 +16,13 @@ def main():
     return render_template("index.html")
 
 
+@app.route("/test")
+def test():
+    app.logger.debug('Loading %s' % (url_for('test')))
+
+    return render_template("test.html")
+
+
 @app.route("/get", methods=["GET"])
 def get():
     app.logger.debug("You have arrived at " + url_for("get"))
@@ -64,6 +71,13 @@ def db_debug():
     return render_template("db_debug.html", table=m_table(data))
 
 
+@app.route("/create", methods=["POST"])
+def create():
+    app.logger.debug("You have arrived at " + url_for("create"))
+
+    print(request.form)
+
+    return render_template('index.html')
 
 
 if __name__ == "__main__":
