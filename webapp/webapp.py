@@ -1,6 +1,9 @@
 from flask import *
 from flask_table import *
 from bigchain_interface.bigchain_interface import BigchainInterface
+from objects.database_object import DatabaseObject
+from bigchaindb_driver.crypto import generate_keypair
+
 from constants.constants import *
 
 app = Flask(__name__)
@@ -75,7 +78,28 @@ def db_debug():
 def create():
     app.logger.debug("You have arrived at " + url_for("create"))
 
-    print(request.form)
+    if request.is_json:
+        data = request.get_json(force=True)
+        print("json: %s" % data)
+
+        _object = DatabaseObject(data, db_interface)
+
+        keypair = data["keypair"]
+
+        if not keypair["public"] or not keypair["private"]:
+            # TODO Remove this if not DEMO
+            print("Non valid keychain; new one is created for DEMO")
+
+            keypair = generate_keypair()
+
+        txid = _object.add_object(keypair)
+
+        print("Object created: %s" % txid)
+
+    # print(request.form)
+    # print(dict(request.form))
+    # print(list(request.form.lists()))
+    # print(list(request.form.listvalues()))
 
     return render_template('index.html')
 

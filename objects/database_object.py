@@ -8,9 +8,13 @@ class DatabaseObject(object):
         self.txid = None
 
     def add_object(self, keypair):
-        pa = self.dbi.prepare_asset("CREATE", keypair.public_key, self.attrs)
+        if type(keypair) != dict:
+            keypair = {"public": keypair.public_key, "private": keypair.private_key}
 
-        self.txid = self.dbi.create_asset(pa, keypair.private_key)
+
+        pa = self.dbi.prepare_asset("CREATE", keypair["public"], self.attrs)
+
+        self.txid = self.dbi.create_asset(pa, keypair["private"])
 
         if not self.txid:
             print("Object creation unsuccessful")
