@@ -83,23 +83,22 @@ def create():
         print("json: %s" % data)
 
         _object = DatabaseObject(data, db_interface)
-
-        keypair = data["keypair"]
-
-        if not keypair["public"] or not keypair["private"]:
-            # TODO Remove this if not DEMO
+        
+        # TODO Remove this if not DEMO
+        if not data["keypair"]:
+            keypair = generate_keypair()
+        # TODO Remove this if not DEMO
+        elif not keypair["public"] or not keypair["private"]:
+            keypair = data["keypair"]
             print("Non valid keychain; new one is created for DEMO")
+        else:
+            keypair = data["keypair"]
 
             keypair = generate_keypair()
 
         txid = _object.add_object(keypair)
 
         print("Object created: %s" % txid)
-
-    # print(request.form)
-    # print(dict(request.form))
-    # print(list(request.form.lists()))
-    # print(list(request.form.listvalues()))
 
     return render_template('index.html')
 
