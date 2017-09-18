@@ -5,24 +5,14 @@ $(document).ready(function() {
                 "type": "bicycle",
                 "serial_number": "abcd1234",
                 "manufacturer": "bkfab"
-            }, "keychain": {
-                "private": "test",
-                "public":  "test"
+            }, "keypair": {
+                "private": null,
+                "public":  null
             }
         };
 
-        $.post("create", json, null, "json");
-
-        // $.ajax({
-        //     url: 'create',
-        //     type: 'POST',
-        //     data: json,
-        //     contentType: 'application/json; charset=utf-8',
-        //     dataType: 'json',
-        //     async: false,
-        //     success: function(msg) {
-        //         alert("test");
-        //     }
-        // })
+        send_json(json, "create", function() {
+            alert("It worked!");
+        })
     })
 })

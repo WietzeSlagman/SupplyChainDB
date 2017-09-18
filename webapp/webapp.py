@@ -78,6 +78,8 @@ def db_debug():
 def create():
     app.logger.debug("You have arrived at " + url_for("create"))
 
+    print(request.is_json)
+
     if request.is_json:
         data = request.get_json(force=True)
         print("json: %s" % data)
@@ -87,14 +89,15 @@ def create():
         # TODO Remove this if not DEMO
         if not data["keypair"]:
             keypair = generate_keypair()
+
         # TODO Remove this if not DEMO
-        elif not keypair["public"] or not keypair["private"]:
-            keypair = data["keypair"]
+        elif not data["keypair"]["public"] or not data["keypair"]["private"]:
+            keypair = generate_keypair()
+
             print("Non valid keychain; new one is created for DEMO")
+
         else:
             keypair = data["keypair"]
-
-            keypair = generate_keypair()
 
         txid = _object.add_object(keypair)
 
