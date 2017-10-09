@@ -1,5 +1,5 @@
 from bigchaindb_driver import BigchainDB
-from pprint import pprint
+
 
 class BigchainInterface:
     def __init__(self, url, port):
@@ -53,8 +53,6 @@ class BigchainInterface:
 
         output_index = 0
         output = prev_tx['outputs'][output_index]
-
-        pprint(prev_tx)
 
         transfer_input = {
             'fulfillment': output['condition']['details'],
