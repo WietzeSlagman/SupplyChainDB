@@ -16,8 +16,17 @@ bicycle_attrs = {
 
 bicycle = DatabaseObject(bicycle_attrs, db_interface)
 
-print("Id: %s" % bicycle.add_object(generate_keypair()))
+bob = generate_keypair()
+alice = generate_keypair()
+richard = generate_keypair()
 
+print("Public key Bob: \t%s" % bob.public_key)
+print("Public key Alice: \t%s" % alice.public_key)
+print("Public key Richard: %s" % richard.public_key)
+
+print("-----------------------------------------------")
+
+print("Object id: %s" % bicycle.add_object(bob))
 
 print("First check transaction: \t%s" % db_interface.check_transaction(bicycle.txid))
 
@@ -25,4 +34,28 @@ sleep(2)
 
 print("Second check transaction: \t%s" % db_interface.check_transaction(bicycle.txid))
 print("Get transaction return: \t%s" % db_interface.get_transaction(bicycle.txid))
-print("Query result: \t\t\t\t%s" % db_interface.query(bicycle.txid))
+print("Query result: \t\t\t\t%s" % db_interface.query(bicycle.object_id))
+
+print("-----------------------------------------------")
+
+print("Object id: %s" % bicycle.send_object(bob, alice))
+
+print("First send transaction: \t%s" % db_interface.check_transaction(bicycle.txid))
+
+sleep(2)
+
+print("Second send transaction: \t%s" % db_interface.check_transaction(bicycle.txid))
+print("Get transaction return: \t%s" % db_interface.get_transaction(bicycle.txid))
+print("Query result: \t\t\t\t%s" % db_interface.query(bicycle.object_id))
+
+print("-----------------------------------------------")
+
+print("Object id: %s" % bicycle.send_object(alice, richard))
+
+print("First send transaction: \t%s" % db_interface.check_transaction(bicycle.txid))
+
+sleep(2)
+
+print("Second send transaction: \t%s" % db_interface.check_transaction(bicycle.txid))
+print("Get transaction return: \t%s" % db_interface.get_transaction(bicycle.txid))
+print("Query result: \t\t\t\t%s" % db_interface.query(bicycle.object_id))
