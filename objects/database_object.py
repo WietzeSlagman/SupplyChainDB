@@ -11,10 +11,7 @@ class DatabaseObject(object):
         if type(keypair) != dict:
             keypair = {"public": keypair.public_key, "private": keypair.private_key}
 
-
-        pa = self.dbi.prepare_asset("CREATE", keypair["public"], self.attrs)
-
-        self.txid = self.dbi.create_asset(pa, keypair["private"])
+        self.txid = self.dbi.create_asset(self.attrs, keypair)
 
         if not self.txid:
             print("Object creation unsuccessful")

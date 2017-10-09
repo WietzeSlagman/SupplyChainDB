@@ -5,21 +5,16 @@ class BigchainInterface:
     def __init__(self, url, port):
         self.bdb = BigchainDB(url + ":" + port)
 
-    def prepare_asset(self, operation, signers, asset):
-        # Prepare asset data
-        return self.bdb.transactions.prepare(
-            operation=operation,
-            signers=signers,
-            asset=asset)
-
-    def create_asset(self, prepared_data, private_key):
+    def create_asset(self, data, keypair):
         # Sign transactions
-        signed_tx = self.bdb.transactions.fulfill(prepared_data, private_key)
+
+        pa = self._prepare_asset("CREATE", signers=keypair["public"], asset=data)
+        signed_tx = self.bdb.transactions.fulfill(pa, keypair["private"])
 
         # Send transaction
         send_tx = self.bdb.transactions.send(signed_tx)
 
-        # Verify and return txid if succesful
+        # Verify and return txid if successful
         if send_tx == signed_tx:
             return signed_tx["id"]
         else:
@@ -36,3 +31,9 @@ class BigchainInterface:
 
     def query(self, search, limit=None):
         return self.bdb.assets.get(search=search, limit=limit)
+
+    def _prepare_asset(self, operation, **kwargs):
+        # Prepare asset data
+        return self.bdb.transactions.prepare(
+            operation=operation,
+            **kwargs)
