@@ -5,8 +5,6 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/test_token_creation_transfer.py" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/test/test_bigchain_interface.py" afterPath="$PROJECT_DIR$/test/test_asset_creation_transfer.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bigchain_interface/bigchain_interface.py" afterPath="$PROJECT_DIR$/bigchain_interface/bigchain_interface.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/objects/database_object.py" afterPath="$PROJECT_DIR$/objects/database_object.py" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -560,7 +558,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507557832168</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Added token support">
+      <created>1507905550728</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1507905550728</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView">
@@ -617,7 +622,8 @@
     <MESSAGE value="improved backend" />
     <MESSAGE value="Sending assets possible" />
     <MESSAGE value="Removed old print statement" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed old print statement" />
+    <MESSAGE value="Added token support" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added token support" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
