@@ -7,10 +7,10 @@ from time import sleep
 db_interface = BigchainInterface(bdb_root_url, bdb_root_port)
 
 bicycle_attrs = {
-    'data': {
-        'type': 'bicycle',
-        'serial_number': 'abcd1234',
-        'manufacturer': 'bkfab',
+    "data": {
+        "type": "bicycle",
+        "serial_number": "abcd1234",
+        "manufacturer": "bkfab",
     }
 }
 
@@ -59,3 +59,14 @@ sleep(2)
 print("Second send transaction: \t%s" % db_interface.check_transaction(bicycle.txid))
 print("Get transaction return: \t%s" % db_interface.get_transaction(bicycle.txid))
 print("Query result: \t\t\t\t%s" % db_interface.query(bicycle.object_id))
+
+print("-----------------------------------------------")
+
+try:
+    print(db_interface.bigchain_core.get_owned_ids(bob))
+    print(db_interface.bigchain_core.get_owned_ids(alice))
+    print(db_interface.bigchain_core.get_owned_ids(richard))
+
+except NotImplemented as e:
+    print("Get owned ids is not yet implemented by BigChainDb")
+    print(e)
