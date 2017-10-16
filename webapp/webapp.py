@@ -1,7 +1,7 @@
 from flask import *
 from flask_table import *
 from bigchain_interface.bigchain_interface import BigchainInterface
-from objects.database_object import DatabaseObject
+from objects.database_object import DatabaseObject, DatabaseToken
 from bigchaindb_driver.crypto import generate_keypair
 
 from constants.constants import *
@@ -84,26 +84,42 @@ def create():
         data = request.get_json(force=True)
         print("json: %s" % data)
 
-        _object = DatabaseObject(data, db_interface)
-        
-        # TODO Remove this if not DEMO
-        if not data["keypair"]:
-            keypair = generate_keypair()
+        _object = None
 
-        # TODO Remove this if not DEMO
-        elif not data["keypair"]["public"] or not data["keypair"]["private"]:
-            keypair = generate_keypair()
-
-            print("Non valid keychain; new one is created for DEMO")
-
+        if "token_for" in data:
+            token = DatabaseToken(data["token_for"], db_interface, data["token_amount"])
         else:
-            keypair = data["keypair"]
+            _object = DatabaseObject(data, db_interface)
+        
+        keypair = create_keypair(data)
 
-        txid = _object.add_object(keypair)
+
+        if _object:
+            txid = _object.add_object(keypair)
+        else:
+            # Token is added to the creator of the token
+            txid = token.add_object(keypair, keypair)
 
         print("Object created: %s" % txid)
 
     return render_template('index.html')
+
+
+def create_keypair(data):
+    # TODO Remove this if not DEMO
+    if not data["keypair"]:
+        keypair = generate_keypair()
+
+    # TODO Remove this if not DEMO
+    elif not data["keypair"]["public"] or not data["keypair"]["private"]:
+        keypair = generate_keypair()
+
+        print("Non valid keychain; new one is created for DEMO")
+
+    else:
+        keypair = data["keypair"]
+
+    return keypair
 
 
 if __name__ == "__main__":
