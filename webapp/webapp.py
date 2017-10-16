@@ -4,10 +4,12 @@ from bigchain_interface.bigchain_interface import BigchainInterface
 from objects.database_object import DatabaseObject, DatabaseToken
 from bigchaindb_driver.crypto import generate_keypair
 
+from pprint import pprint
+from time import sleep
+
 from constants.constants import *
 
 app = Flask(__name__)
-app.config['DEBUG'] = True
 
 db_interface = BigchainInterface(bdb_root_url, bdb_root_port)
 
@@ -78,16 +80,14 @@ def db_debug():
 def create():
     app.logger.debug("You have arrived at " + url_for("create"))
 
-    print(request.is_json)
-
     if request.is_json:
         data = request.get_json(force=True)
         print("json: %s" % data)
 
         _object = None
 
-        if "token_for" in data:
-            token = DatabaseToken(data["token_for"], db_interface, data["token_amount"])
+        if "token_for" in data["data"]:
+            token = DatabaseToken(data, db_interface, data["token_amount"])
         else:
             _object = DatabaseObject(data, db_interface)
         
@@ -97,9 +97,17 @@ def create():
             txid = _object.add_object(keypair)
         else:
             # Token is added to the creator of the token
+
+            print()
             txid = token.add_object(keypair, keypair)
 
         print("Object created: %s" % txid)
+
+        sleep(2)
+
+        print("Object:")
+        pprint(db_interface.get_transaction(txid))
+
 
     return render_template('index.html')
 
