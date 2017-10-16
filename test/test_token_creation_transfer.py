@@ -24,8 +24,6 @@ bob = generate_keypair()
 alice = generate_keypair()
 richard = generate_keypair()
 
-from pprint import pprint
-
 print("Public key Bob: \t%s" % bob.public_key)
 print("Public key Alice: \t%s" % alice.public_key)
 print("Public key Richard: %s" % richard.public_key)
