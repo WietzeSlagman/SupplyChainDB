@@ -26,8 +26,8 @@
           <file leaf-file-name="webapp.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/webapp/webapp.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="752">
-                  <caret line="119" column="8" lean-forward="false" selection-start-line="119" selection-start-column="8" selection-end-line="119" selection-end-column="8" />
+                <state relative-caret-position="1007">
+                  <caret line="94" column="0" lean-forward="true" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
                   <folding>
                     <element signature="e#0#19#0" expanded="true" />
                   </folding>
@@ -593,7 +593,14 @@
       <option name="project" value="LOCAL" />
       <updated>1508141762780</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Added token support in the webapp">
+      <created>1508144008331</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1508144008331</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TodoView">
@@ -655,7 +662,8 @@
     <MESSAGE value="Renamed test file" />
     <MESSAGE value="Removed unused import" />
     <MESSAGE value="Removed unnecessary parenthesis" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed unnecessary parenthesis" />
+    <MESSAGE value="Added token support in the webapp" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added token support in the webapp" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1049,8 +1057,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webapp/webapp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="752">
-          <caret line="119" column="8" lean-forward="false" selection-start-line="119" selection-start-column="8" selection-end-line="119" selection-end-column="8" />
+        <state relative-caret-position="1007">
+          <caret line="94" column="0" lean-forward="true" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>

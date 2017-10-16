@@ -93,7 +93,6 @@ def create():
         
         keypair = create_keypair(data)
 
-
         if _object:
             txid = _object.add_object(keypair)
         else:
