@@ -26,7 +26,7 @@ class DatabaseObject(object):
         return self.txid
 
 
-class DatabaseToken():
+class DatabaseToken:
     def __init__(self, attrs, database_interface, amount, on_chain=True):
         self.on_chain = on_chain
         self.attrs = attrs
